@@ -47,6 +47,12 @@ const askForYear = (sessionsHistory) => {
     fetchYear(sessionsHistory, year, rl);
   });
 };
+const askForGenreYear = (sessionsHistory) => {
+  atMainMenu = false;
+  rl.question('Enter the year: ', (year) => {
+    fetchGenre(sessionsHistory, year, rl);
+  });
+};
 const askForArtist = (sessionsHistory) => {
   atMainMenu = false;
   rl.question('Enter the artist name: ', (artistName) => {
@@ -76,17 +82,17 @@ const mainMenu = async () => {
   process.stdout.write('\x1Bc');
 
   // Display main menu
-  rl.question('PLEX Encore / RE:PLEX\nv0.1 - github.com/508loopdetected\n\nSelect an option:\n[1] By Artist\n[2] By Year\n[3] By Genre\n\n[esc] exit\n\nEnter choice: ', (answer) => {
+  rl.question('PLEX Encore / RE:PLEX\nv0.1 - github.com/508loopdetected\n\nSelect an option:\n[1] Most Played by Year\n[2] 2023 Artist Data\n[3] Genres by Year\n\n[esc] exit\n\nEnter choice: ', (answer) => {
     atMainMenu = false; // User has made a selection, no longer at the main menu
     switch (answer) {
       case '1':
-        askForArtist(sessionsHistory, rl);
+        askForYear(sessionsHistory, rl);
         break;
       case '2':
-        askForYear(sessionsHistory, rl);  // Pass the readline interface
+        askForArtist(sessionsHistory, rl);
         break;
       case '3':
-        fetchGenre(sessionsHistory, rl);
+        askForGenreYear(sessionsHistory, rl);
         break;
       default:
         console.log('Invalid selection. Please try again.');

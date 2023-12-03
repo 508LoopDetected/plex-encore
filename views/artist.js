@@ -89,7 +89,7 @@ const fetchArtist = async (sessionsHistory, artistName, year, rl) => {
       // Display top 20 tracks of the year
       console.log(`Top ${artistStats.artist} Tracks in ${year}:\n`);
       artistStats.topTracksOfYear.slice(0, 20).forEach(track => {
-          console.log(`"${track.title}" - ${track.album} (${track.playCount} Plays)`);
+          console.log(`${track.playCount} Plays: "${track.title}" - ${track.album}`);
       });
       console.log('\n[esc] menu\n');
       return;
